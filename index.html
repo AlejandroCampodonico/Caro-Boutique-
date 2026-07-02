@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caro Boutique de Moños</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="#inicio" class="marca-container" data-nav="inicio">
+      <div class="mono-logo"><div class="mono-centro"></div></div>
+      <span class="logo-texto">Caro Boutique</span>
+    </a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menú">☰</button>
+    <nav class="site-nav" id="site-nav">
+      <a href="#inicio" class="nav-link" data-nav="inicio">Inicio</a>
+      <a href="#catalogo" class="nav-link" data-nav="catalogo">Colección</a>
+      <a href="#personalizacion" class="nav-link" data-nav="personalizacion">Personalización</a>
+      <a href="#accesos" class="nav-link" data-nav="accesos">Accesos</a>
+      <a href="#carrito" class="nav-link nav-carrito" data-nav="carrito">
+        Carrito <span class="badge-carrito" id="badge-carrito">0</span>
+      </a>
+      <a href="#admin" class="nav-link nav-admin" id="nav-admin" data-nav="admin" style="display:none;">Publicar</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- INICIO -->
+    <section id="vista-inicio" class="vista activa">
+      <div class="hero">
+        <div class="hero-texto">
+          <p class="hero-etiqueta">Artesanía · Elegancia · Detalle</p>
+          <h1>Moños hechos con amor,<br>para brillar cada día</h1>
+          <p class="hero-desc">
+            En Caro Boutique encontrás moños artesanales con acabado premium.
+            Cada pieza es única, pensada para realzar tu estilo con delicadeza y calidad.
+          </p>
+          <div class="hero-botones">
+            <a href="#catalogo" class="btn-principal btn-inline" data-nav="catalogo">Ver colección</a>
+            <a href="#personalizacion" class="btn-secundario btn-inline" data-nav="personalizacion">Pedido a medida</a>
+          </div>
+        </div>
+        <div class="hero-galeria">
+          <div class="hero-card hero-card-1"><span>Velvet</span></div>
+          <div class="hero-card hero-card-2"><span>Satén</span></div>
+          <div class="hero-card hero-card-3"><span>Organza</span></div>
+        </div>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">✦</div>
+          <h3>Calidad premium</h3>
+          <p>Materiales seleccionados y terminaciones impecables en cada moño.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">♥</div>
+          <h3>Hecho a mano</h3>
+          <p>Diseños artesanales con dedicación y atención al detalle.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">✉</div>
+          <h3>Pedidos por WhatsApp</h3>
+          <p>Comprá online y coordiná la entrega de forma simple y directa.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section id="vista-catalogo" class="vista">
+      <div class="page-header">
+        <h2>Nuestra Colección</h2>
+        <p>Explorá los moños disponibles. Filtrá por color, tamaño o precio.</p>
+      </div>
+      <div class="barra-filtros">
+        <div>
+          <label class="campo-label">Buscar</label>
+          <input type="text" id="filtro-busqueda" class="input-estilo" placeholder="Nombre del moño...">
+        </div>
+        <div>
+          <label class="campo-label">Ordenar</label>
+          <select id="filtro-orden" class="select-estilo">
+            <option value="reciente">Más recientes</option>
+            <option value="precio-asc">Precio ↑</option>
+            <option value="precio-desc">Precio ↓</option>
+            <option value="nombre">Nombre A-Z</option>
+          </select>
+        </div>
+        <div>
+          <label class="campo-label">Color</label>
+          <select id="filtro-color" class="select-estilo">
+            <option value="">Todos</option>
+            <option value="rosa">Rosa</option>
+            <option value="rojo">Rojo</option>
+            <option value="negro">Negro</option>
+            <option value="blanco">Blanco</option>
+            <option value="dorado">Dorado</option>
+            <option value="azul">Azul</option>
+            <option value="verde">Verde</option>
+            <option value="violeta">Violeta</option>
+            <option value="nude">Nude</option>
+            <option value="multicolor">Multicolor</option>
+          </select>
+        </div>
+        <div>
+          <label class="campo-label">Tamaño</label>
+          <select id="filtro-tamanio" class="select-estilo">
+            <option value="">Todos</option>
+            <option value="pequeno">Pequeño</option>
+            <option value="mediano">Mediano</option>
+            <option value="grande">Grande</option>
+          </select>
+        </div>
+        <div>
+          <label class="campo-label">Precio máx.</label>
+          <input type="number" id="filtro-precio-max" class="input-estilo" placeholder="Sin límite" min="0">
+        </div>
+        <div class="filtro-accion">
+          <button class="btn-secundario" id="btn-limpiar-filtros">Limpiar</button>
+        </div>
+      </div>
+      <p class="contador-resultados" id="contador-resultados"></p>
+      <div class="grid-productos" id="contenedor-productos">
+        <div class="mensaje-vacio">Cargando colección...</div>
+      </div>
+    </section>
+
+    <!-- PERSONALIZACIÓN -->
+    <section id="vista-personalizacion" class="vista">
+      <div class="page-header">
+        <h2>Personalización a medida</h2>
+        <p>Contanos tu idea y diseñamos el moño perfecto para vos.</p>
+      </div>
+      <div class="aviso-premium caja-estilo">
+        <strong>✨ Pedido exclusivo</strong>
+        <p>Los diseños personalizados tienen un <strong>costo mayor</strong> al catálogo, según materiales, tamaño y complejidad. Te enviamos el presupuesto antes de confirmar.</p>
+      </div>
+      <div class="caja-estilo formulario-ancho">
+        <label class="campo-label">Nombre completo</label>
+        <input type="text" id="pedido-nombre" class="input-estilo" placeholder="Tu nombre">
+        <label class="campo-label">WhatsApp o Email</label>
+        <input type="text" id="pedido-contacto" class="input-estilo" placeholder="+54 9 ...">
+        <label class="campo-label">Tipo de tela</label>
+        <select id="pedido-tela" class="select-estilo">
+          <option value="raso">Raso / Satén</option>
+          <option value="terciopelo">Terciopelo</option>
+          <option value="organza">Organza</option>
+          <option value="algodon">Algodón estampado</option>
+        </select>
+        <label class="campo-label">Color principal</label>
+        <input type="color" id="pedido-color" class="input-estilo input-color" value="#d87093">
+        <label class="campo-label">Descripción del diseño</label>
+        <textarea id="pedido-descripcion" class="textarea-estilo" rows="5" placeholder="Ej: Moño de dos capas, cinta larga, clip francés para mucho pelo..."></textarea>
+        <button class="btn-principal" id="btn-enviar-pedido">Enviar pedido por WhatsApp</button>
+      </div>
+    </section>
+
+    <!-- ACCESOS -->
+    <section id="vista-accesos" class="vista">
+      <div class="page-header">
+        <h2>Accesos</h2>
+        <p>Registrate como clienta o ingresá como propietaria para gestionar la tienda.</p>
+      </div>
+      <div class="accesos-grid">
+        <div class="caja-estilo">
+          <h3 class="card-titulo">Soy clienta</h3>
+          <p class="card-sub">Guardá tus datos para agilizar tus pedidos.</p>
+          <label class="campo-label">Nombre</label>
+          <input type="text" id="cliente-nombre" class="input-estilo" placeholder="Tu nombre">
+          <label class="campo-label">Email</label>
+          <input type="email" id="cliente-email" class="input-estilo" placeholder="tu@email.com">
+          <button class="btn-principal" id="btn-guardar-cliente">Guardar mis datos</button>
+          <p class="hint" id="cliente-guardado-msg"></p>
+        </div>
+        <div class="caja-estilo caja-propietaria">
+          <h3 class="card-titulo">Soy propietaria</h3>
+          <p class="card-sub">Accedé para publicar, editar precios y stock.</p>
+          <div id="panel-login-propietaria">
+            <label class="campo-label">Email autorizado</label>
+            <input type="email" id="owner-email" class="input-estilo" placeholder="tu@email.com">
+            <label class="campo-label">Contraseña</label>
+            <input type="password" id="owner-password" class="input-estilo" placeholder="Tu contraseña">
+            <button class="btn-principal" id="btn-owner-login">Ingresar</button>
+            <button class="btn-secundario" id="btn-owner-registro" style="margin-top:10px;width:100%;">Crear cuenta (primera vez)</button>
+            <p class="hint">Solo emails autorizados pueden gestionar la tienda.</p>
+          </div>
+          <div id="panel-owner-logueada" style="display:none;">
+            <p class="owner-bienvenida">Sesión activa: <strong id="owner-email-activo"></strong></p>
+            <button class="btn-principal" id="btn-ir-admin">Ir a publicar moños</button>
+            <button class="btn-secundario" id="btn-owner-logout" style="margin-top:10px;width:100%;">Cerrar sesión</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARRITO -->
+    <section id="vista-carrito" class="vista">
+      <div class="page-header">
+        <h2>Tu carrito</h2>
+        <p>Revisá tu pedido y finalizá por WhatsApp.</p>
+      </div>
+      <div class="carrito-layout">
+        <div class="caja-estilo" id="contenido-carrito-pagina">
+          <div class="carrito-vacio">Tu carrito está vacío. <a href="#catalogo" data-nav="catalogo">Ver colección</a></div>
+        </div>
+        <div class="caja-estilo carrito-resumen" id="resumen-carrito" style="display:none;">
+          <h3>Resumen</h3>
+          <div class="total-carrito">
+            <span>Total</span>
+            <span id="total-carrito">$0</span>
+          </div>
+          <button class="btn-principal" id="btn-checkout">Finalizar por WhatsApp</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN -->
+    <section id="vista-admin" class="vista">
+      <div class="page-header">
+        <h2>Publicar y gestionar</h2>
+        <p>Los cambios se ven al instante para todas las visitantes de la tienda.</p>
+      </div>
+      <div id="admin-sin-sesion" class="caja-estilo mensaje-vacio-inline">
+        <p>Ingresá como propietaria en <a href="#accesos" data-nav="accesos">Accesos</a> para gestionar productos.</p>
+      </div>
+      <div id="admin-contenido" style="display:none;">
+        <div class="caja-estilo caja-admin">
+          <h3 class="card-titulo">Nuevo moño</h3>
+          <div class="admin-grid">
+            <div>
+              <label class="campo-label">Nombre</label>
+              <input type="text" id="nuevo-nombre" class="input-estilo" placeholder="Ej: Moño Velvet Noche">
+            </div>
+            <div>
+              <label class="campo-label">Precio ($)</label>
+              <input type="number" id="nuevo-precio" class="input-estilo" min="0" step="100">
+            </div>
+            <div>
+              <label class="campo-label">Tamaño</label>
+              <select id="nuevo-tamanio" class="select-estilo">
+                <option value="pequeno">Pequeño</option>
+                <option value="mediano" selected>Mediano</option>
+                <option value="grande">Grande</option>
+              </select>
+            </div>
+            <div>
+              <label class="campo-label">Color</label>
+              <select id="nuevo-color" class="select-estilo">
+                <option value="rosa" data-hex="#ffb6c1">Rosa</option>
+                <option value="rojo" data-hex="#c0392b">Rojo</option>
+                <option value="negro" data-hex="#222222">Negro</option>
+                <option value="blanco" data-hex="#f5f5f5">Blanco</option>
+                <option value="dorado" data-hex="#d4af37">Dorado</option>
+                <option value="azul" data-hex="#3498db">Azul</option>
+                <option value="verde" data-hex="#27ae60">Verde</option>
+                <option value="violeta" data-hex="#9b59b6">Violeta</option>
+                <option value="nude" data-hex="#d4a574">Nude</option>
+                <option value="multicolor" data-hex="#d87093">Multicolor</option>
+              </select>
+            </div>
+            <div>
+              <label class="campo-label">Stock</label>
+              <input type="number" id="nuevo-stock" class="input-estilo" value="1" min="0">
+            </div>
+          </div>
+          <label class="campo-label">Descripción</label>
+          <textarea id="nuevo-descripcion" class="textarea-estilo" rows="3" placeholder="Breve descripción del moño..."></textarea>
+          <label class="campo-label">Imagen</label>
+          <div class="zona-imagen" id="zona-upload">
+            <p>Arrastrá o hacé clic para subir foto<br><small>Fondo claro recomendado</small></p>
+            <input type="file" id="input-imagen" accept="image/*" hidden>
+          </div>
+          <div class="herramienta-fondo" id="herramienta-fondo" style="display:none;">
+            <h4>Estudio premium — fondo blanco</h4>
+            <label class="campo-label">Sensibilidad</label>
+            <input type="range" id="sensibilidad-fondo" min="10" max="70" value="32">
+            <div class="preview-doble">
+              <div><small>Original</small><img id="preview-original" alt=""></div>
+              <div><small>Resultado</small><img id="preview-procesada" alt=""></div>
+            </div>
+            <div class="btn-row">
+              <button class="btn-principal" id="btn-quitar-fondo">Quitar fondo</button>
+              <button class="btn-secundario" id="btn-usar-original">Usar original</button>
+            </div>
+          </div>
+          <button class="btn-principal" id="btn-publicar" disabled style="margin-top:12px;">Publicar moño</button>
+        </div>
+        <div class="caja-estilo">
+          <h3 class="card-titulo">Productos en tienda</h3>
+          <div id="contenedor-admin-productos"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p><strong>Caro Boutique</strong> · Moños artesanales</p>
+    <p class="footer-sub">Consultas y pedidos por WhatsApp</p>
+  </footer>
+
+  <div class="overlay" id="overlay-modal"></div>
+  <div class="modal-producto" id="modal-producto">
+    <button class="btn-cerrar modal-cerrar" id="btn-cerrar-modal">&times;</button>
+    <div class="modal-grid" id="modal-contenido"></div>
+  </div>
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
